@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Získat kód</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        .floating-img {
+            position: absolute;
+            width: 50px; /* Размер изображения */
+            height: 50px;
+            opacity: 0.8;
+            transition: transform 3s ease-in-out; /* Плавное движение */
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Získat jedinečný kód</h1>
+    <form action="redirect.php" method="POST">
+        <button type="submit">Získat kód!</button>
+    </form>
+
+    <div class="container" id="container"></div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.getElementById("container");
+            const imgSrc = "C:\Users\Богдан\CascadeProjects\для qr кода\5321285895460090203.png"; // Замените на путь к вашей картинке
+
+            function createFloatingImage() {
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.classList.add("floating-img");
+
+                // Случайная позиция
+                img.style.left = Math.random() * window.innerWidth + "px";
+                img.style.top = Math.random() * window.innerHeight + "px";
+
+                container.appendChild(img);
+
+                function moveImage() {
+                    img.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+                }
+
+                setInterval(moveImage, 3000); // Обновляем каждую 3 секунду
+            }
+
+            for (let i = 0; i < 100; i++) {
+                createFloatingImage();
+            }
+        });
+    </script>
+</body>
+</html>
